@@ -1,0 +1,60 @@
+<style>
+    .number{
+        width: 30px;
+        height: 30px;
+        border: 1px solid #333;
+        margin: 5px;
+        padding: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        cursor: pointer;
+    }
+    .first-element{
+        background-color: aquamarine;
+        cursor: default;
+    }
+    .matched{
+        color: #eee;
+        border-color: #eee;
+        cursor: default;
+    }
+</style>
+<button>Add</button>
+
+<script>
+    var button = document.querySelector("button");
+    var firstElement = null;
+
+    button.onclick = function(){
+        for(var i=0; i<10; i++)
+            document.body.appendChild(createElement());
+    }
+
+    function createElement(){
+        var element = document.createElement("div");
+        element.innerHTML = Math.ceil(Math.random()*9);
+        element.classList.add("number");
+
+        element.onclick = function(){
+            if (element == firstElement || element.classList.contains("matched")){
+                return;
+            }
+            if(firstElement == null){
+                firstElement = element;
+                element.classList.add("first-element");
+            }
+            else{
+                var number1 = parseInt(firstElement.innerHTML);
+                var number2 = parseInt(element.innerHTML);
+                if (number1==number2 || number1+number2==10){
+                    element.classList.add("matched");
+                    firstElement.classList.add("matched");
+                }
+                firstElement.classList.remove("first-element");
+                firstElement = null;
+            }
+        }
+        return element;
+    }
+</script>
