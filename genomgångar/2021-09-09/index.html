@@ -1,0 +1,21 @@
+<script>
+    class Person{
+        Namn;
+        Alder;
+        constructor(namn, alder){
+            this.Namn = namn;
+            this.Alder = alder;
+        }
+        Print(){
+            console.log(this.Namn + " " + this.Alder);
+        }
+        IsMyndig(){ return this.Alder >= 18; }
+    }
+    var kalle = new Person("Kalle", 24);
+    var olle = new Person("Olle", 17);
+
+    kalle.Print();
+    olle.Print();
+    console.log("Kalle är myndig: " + kalle.IsMyndig());
+    console.log("Olle är myndig: " + olle.IsMyndig());
+</script>
